@@ -1,0 +1,55 @@
+| Princípios Básicos de Dados do Azure: explorar dados relacionais no Azure
+
+|| Diferentes maneiras de hospedar um banco de dados no Azure. (IaaS, PaaS e SaaS)
+
+    IaaS (Infraestrutura como serviço) - Você é responsável por instalar e configurar o software, como o DBMS, nas máquinas virtuais. É parecido com o sistema tradicional executação em uma organização, porem não é preciso de preocupar com a compra e nem a manuntenção do hadware.
+
+    Exemplo:    Rede Virtual do Azure.
+    Inclue:     Servidores, armazenamento, rede e data centers físicos.
+
+    PaaS (Plataforma como serviço) - Essa solução cria uma infraestrutura virtual, instala e gerencia o software de banco de dados pra você. Sendo necessario apenas especificar os recursos necessarios. O Azure cria automaticamente as VM, redes, etc. Como tambem dimensiona o tamanho dos recursos verticalmente.
+
+    Exemplo:    Bancos de Dados SQL do Azure.
+    Inclue:     IaaS mais gerenciamento de banco de dados e sistemas operacionais.
+
+    SaaS (software como serviço) - São pacotes de software especificos instalados e executados em hardware virtual em nuvem.
+
+    Exemplo:    Office 365. 
+    Inclue:     PaaS mais aplicativos.
+
+|| Banco de Dados SQL do Azure
+
+    É uma oferta de PaaS da Microsoft. Você cria um servidor de banco de dados na nuem e implanta seus bancos de dados nele.
+
+    Ele está disponivel em opções como: Banco de Dados Individual, Pool Elástico, Instância Gerenciada. 
+
+    Banco de dados Individual: Com essa opção é permitido executar rapidamente uma unica instancia de um servidor de banco de dados na nuvem. Onde a Microsoft gerencia o servidor. 
+
+    Pool Elástico: Semelhante ao Banco de Dados individual, no entanto varios bancos podem compartilhar os mesmos recursos por meio de multilocação.
+
+    Instância Gerenciada: Essa opção é permitido ter controle total sobre a instância, assim como em um servidor local. 
+
+|| Provisionamento
+
+    Ato de executar uma série de tarefas que um provedor de serviços, como o Banco de Dados SQL do Azure, realiza para criar e configurar um serviço.
+    O Azure fornece várias ferramentas que podem ser usadas para provisionar serviços:
+
+    - O portal do Azure. 
+        Essa é a maneira mais conveniente de provisionar um serviço para a maioria dos usuários. O portal do Azure exibe uma série de páginas específicas do serviço que solicitam a você as configurações necessárias e valida essas configurações antes de provisionar efetivamente o serviço.
+    - A CLI (interface de linha de comando) do Azure.
+        conjunto de comandos que podem ser executados por meio do prompt de comando do sistema operacional ou do Cloud Shell no portal do Azure. É possível usar esses comandos para criar e gerenciar recursos do Azure. A CLI é adequada se você precisa automatizar a criação de serviços. É possível armazenar comandos da CLI em scripts e executar esses scripts programaticamente. A CLI pode ser executada em computadores Windows, macOS e Linux.
+    - Azure PowerShell. 
+        Muitos administradores estão familiarizados com o uso de comandos do PowerShell para criar scripts e automatizar tarefas administrativas. O Azure fornece uma série de commandlets (comandos específicos do Azure) que podem ser usados no PowerShell para criação e gerenciamento de recursos do Azure. Assim como a CLI, o PowerShell está disponível para Windows, macOS e Linux.
+    - Modelos do Azure Resource Manager.
+        Um modelo do Azure Resource Manager descreve o serviço (ou serviços) que você deseja implantar em um arquivo de texto, em um formato conhecido como JSON.
+
+|| Consultar dados relacionais no Banco de Dados SQL do Azure
+
+    Instruções para utilizar ferramentas para consulta de dados em Banco de Dados SQL do Azure. 
+    https://docs.microsoft.com/pt-br/learn/modules/query-relational-data/3-sql-database
+
+|| Usar o SQL para consultar o Banco de Dados SQL do Azure  
+
+    Database Connection: contoso-server-3d110a9ffe.database.windows.net
+    User: sampleLogin
+    Password: samplePassword123!

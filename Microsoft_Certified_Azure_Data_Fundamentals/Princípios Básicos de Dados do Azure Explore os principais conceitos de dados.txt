@@ -1,0 +1,153 @@
+| Princípios básicos de dados do Azure: Explore os principais conceitos de dados
+
+|| Como os dados são definidos, armazenados e acessados na computação em nuvem?
+
+    Dados estruturados normalmente são armazenados em um banco de dados relacional, como o SQL Server ou o Banco de Dados SQL do Azure. O Banco de Dados SQL do Azure é um serviço executado na nuvem. Você pode usá-lo para criar e acessar tabelas relacionais. O serviço é gerenciado e executado pelo Azure, basta especificar que você deseja que um servidor de banco de dados seja criado. O ato de configurar o servidor de banco de dados é chamado de provisionamento.
+
+    Dados não estruturados, como arquivos de vídeo ou áudio, poderá usar o Armazenamento de Blobs do Azure (Blob é o acrônimo em inglês de objeto binário grande). Se quiser armazenar dados semiestruturados, como documentos, poderá usar um serviço como o Azure Cosmos DB.
+
+    Você pode definir quais usuários devem ter permissão para acessar os dados em primeiro lugar. Se os dados forem confidenciais (ou secretos), você deverá restringir o acesso a alguns usuários selecionados.
+
+|| O que é um sistema transacional?
+
+    Um sistema transacional registra transações. Pense na transação como uma unidade de trabalho pequena e discreta.
+    Os sistemas transacionais geralmente são de alto volume, às vezes manipulando muitos milhões de transações em um dia. Os dados que estão sendo processados têm que estar acessíveis com rapidez. O trabalho executado por sistemas transacionais é geralmente conhecido como OLTP (Processamento de Transações Online).
+    Dividir tabelas em grupos separados de colunas desta maneira é uma prática conhecida como normalização. A próxima unidade aborda esse processo com mais detalhes. A normalização pode permitir que um sistema transacional armazene em cache grande parte das informações necessárias para executar transações na memória, acelerando a taxa de transferência.
+
+|| O que é um sistema analítico?
+
+    Sistema analítico foi projetado para dar suporte a usuários empresariais que precisam consultar dados e obter uma visão do panorama geral das informações mantidas em um banco de dados.
+
+|| Descrever cargas de trabalho transacionais
+
+    Um banco de dados transacional deve aderir às propriedades ACID (atomicidade, consistência, isolamento, durabilidade) para garantir que o banco de dados permaneça consistente durante o processamento de transações.
+        . A - atomicidade verifica se cada transação é tratada como uma unidade independente que resulta em sucesso completo ou falha completa.
+        . C - consistência verifica se uma transação conduz os dados do banco de dados de um estado válido para outro estado válido. Um banco de dados consistente jamais deve perder ou criar dados de maneira que não possa ser contabilizada.
+        . I - isolamento verifica se a execução simultânea de transações deixa o banco de dados no mesmo estado em que ele ficaria se as transações fossem executadas de maneira sequencial.
+        . D - durabilidade verifica se, após ter sido confirmada, uma transação permanece confirmada mesmo que haja falha no sistema.
+
+|| Descrever cargas de trabalho analíticas
+
+    As cargas de trabalho analíticas são usadas para análise de dados e tomada de decisões. As análises são geradas tomando os fatos apresentados pelos dados brutos e agregando em resumos, tendências e outros tipos de "informações de negócios".
+
+|| Batch (lote) vs Streaming
+
+    Batch: 
+        No processamento em lotes, os elementos de dados recém-chegados são reunidos em um grupo. Então, o grupo inteiro é processado em um momento futuro como um lote. Há várias maneiras de determinar o momento exato em que cada grupo é processado.
+
+    Streaming:
+        O streaming lida com os dados em tempo real. Ao contrário do processamento em lotes, não há espera até o próximo intervalo de processamento de lotes e os dados são processados como partes individuais, em vez de serem processados um lote por vez. O processamento de dados de streaming é benéfico na maioria dos cenários em que dados dinâmicos são gerados de maneira contínua.
+
+    Diferenças:
+        . Escopo de dados: o processamento em lotes pode executar todos os dados de um conjunto. O processamento de streaming normalmente só tem acesso aos dados mais recentes recebidos ou aos dados que estão dentro de uma janela de tempo contínua.
+        . Tamanho dos dados: o processamento em lotes é adequado para lidar de maneira eficiente com grandes conjunto de dados. O processamento de streaming destina-se a registros individuais ou micro lotes, formados por poucos registros.
+        . Desempenho: A latência do processamento em lotes normalmente é de algumas horas. O processamento de streaming normalmente ocorre imediatamente, com latência na ordem de segundos ou milissegundos. Latência é o tempo necessário para que os dados sejam recebidos e processados.
+        . Análise: Normalmente, você usa o processamento em lotes para executar análises complexas. O processamento de streaming é usado para funções de resposta simples, agregações ou cálculos como médias móveis.
+    
+|| Azure Data Studio
+
+    Interface gráfica para gerenciar diferentes sistemas de banco de dados.
+
+|| SQL Management Studio
+
+     Interface gráfica que permite consultar dados, executar tarefas gerais de administração de bancos de dados e gerar scripts para automatizar a manutenção de bancos de dados e as operações de suporte.
+
+|| Conceitos básicos de IaaS e PaaS
+
+    IaaS é a abreviação de infraestrutura como serviço:
+        - Você não precisa se preocupar com a compra nem a manutenção do hardware;
+        - Você ainda é responsável por muitas das operações cotidianas, como instalar e configurar o software, aplicar patches, realizar backups e restaurar dados quando necessário;
+        - Solução intermediária para operações totalmente gerenciadas na nuvem;
+    PaaS significa plataforma como serviço:
+        - Cria uma infraestrutura virtual e instalar e gerenciar o software de banco de dados;
+
+|| Quais são as características dos dados não relacionais?
+
+    - Eles permitem que você armazene dados de maneira muito flexível;
+    - Você armazena as informações de entidades em coleções ou contêineres, em vez de tabelas relacionais;
+    
+|| Dados semiestruturados
+
+    São aqueles que contêm campos. Os campos não precisam ser os mesmos em todas as entidades. Você só define os campos de que precisa por entidade.
+
+    Formatos mais comuns:
+        - JSON: Um documento JSON é colocado entre chaves ({e}). Cada campo tem um nome (um rótulo), seguido por dois-pontos e pelo valor do campo. Os campos podem conter valores simples ou subdocumentos (cada um iniciando e terminando com chaves). Os campos também podem ter vários valores, mantidos como matrizes e circundados com colchetes ([e]). Os literais ou valores fixos em um campo são colocados entre aspas e os campos são separados por vírgulas.
+        
+        - Avro: Formato baseado em linha. Cada registro contém um cabeçalho que descreve a estrutura dos dados no registro. Esse cabeçalho é armazenado como JSON. Os dados são armazenados como informações binárias. Um aplicativo usa as informações no cabeçalho para analisar os dados binários e extrair os campos contidos neles. O Avro é um formato muito bom para compactar dados e minimizar os requisitos de armazenamento e largura de banda de rede.
+
+        - ORC: Organiza os dados em colunas em vez de linhas. Um arquivo ORC contém faixas de dados. Cada faixa contém os dados de uma coluna ou conjunto de colunas. Uma faixa contém um índice nas linhas na faixa, os dados de cada linha e um rodapé que contém informações estatísticas (contagem, soma, máximo, mínimo e assim por diante) para cada coluna. 
+
+        - Parquet: Formato de dados de coluna. Um arquivo Parquet contém grupos de linhas. Os dados de cada coluna são armazenados juntos no mesmo grupo de linhas. Cada grupo de linhas contém uma ou mais partes de dados. Um arquivo Parquet inclui metadados que descrevem o conjunto de linhas encontrado em cada parte. Um aplicativo pode usar esses metadados para localizar rapidamente a parte correta de um determinado conjunto de linhas e recuperar os dados nas colunas especificadas para essas linhas. O Parquet é especialista em armazenar e processar tipos de dados aninhados com eficiência. Ele dá suporte a esquemas de codificação e compactação muito eficientes.
+    
+|| Dados não estruturados
+
+    Dados não estruturados são aqueles que, naturalmente, não contêm campos. Os exemplos incluem vídeo, áudio e outros fluxos de mídia. Cada item é um blob amorfo de dados binários. Não é possível pesquisar elementos específicos nesses dados.
+
+|| NoSQL
+
+    Termo bastante flexível que significa simplesmente não relacional. Geralmente se enquadram em quatro categorias: repositórios de chave-valor, bancos de dados de documentos, bancos de dados de família de colunas e bancos de dados de grafo. 
+
+|| Repositório de chave-valor
+
+    Geralmente mais e simples e mais rápido, para inserção e consulta de dados num SGBD NoSQL. Possui uma chave e um valor onde a chave identifica exclusivamente o item, e o valor contém os dados para o item.
+    As operações de gravação são restritas a inserções e exclusões. Se você precisar atualizar um item, deverá recuperar o item, modificá-lo na memória (no aplicativo) e gravá-lo novamente no banco de dados, substituindo o original (efetivamente uma exclusão e uma inserção).
+
+|| Banco de dados de documentos
+
+    Cada documento tem uma ID exclusiva, mas os campos nos documentos são transparentes para o sistema de gerenciamento de banco de dados. Normalmente armazenam informações no formato JSON, XML, YAML, BSON. Os documentos podem até mesmo ser armazenados como texto sem formatação. A maioria dos bancos de dados de documentos ingerirá grandes volumes de dados mais rapidamente do que um banco de dado relacional, mas não é o ideal como um repositório de chave-valor para esse tipo de processamento. O foco de um banco de dados de documentos é a funcionalidade de consulta.
+
+|| Banco de dados de família de colunas
+
+    Parece ser semelhante a um banco de dados relacional, pois conceitualmente organiza os dados em linhas e colunas. O poder real de um banco de dados de família de colunas está na abordagem desnormalizada para estruturar dados esparsos. Você deve realmente considerar a estrutura em termos de famílias de colunas em vez de linhas. Os dados de uma entidade que abrange várias famílias de colunas terão a mesma chave de linha em cada família de colunas.
+
+|| Banco de dados de grafo
+
+    Permitem que você armazene entidades, mas o foco principal está nas relações que essas entidades têm entre si. Um banco de dados de grafo armazena dois tipos de informação: nós que você pode considerar como instâncias de entidades e bordas, que especificam as relações entre os nós. Os nós e as bordas podem ter propriedades que fornecem informações sobre esse nó ou borda (como colunas em uma tabela). Além disso, as bordas podem ter uma direção que indica a natureza da relação.
+    A finalidade de um banco de dados de grafo é permitir que um aplicativo execute com eficiência consultas que atravessam a rede de nós e bordas e analise as relações entre entidades.
+
+|| O que é ELT e ETL?
+
+    ETL (extração, transformação e carregamento):
+    - Dados brutos são recuperados e transformados antes de serem salvos;
+    - Essa abordagem é adequada para sistemas que exigem apenas modelos simples, com pouca dependência entre os itens. Ex: limpeza de dados, eliminação de duplicação de dados;
+    
+    ELT (extrair, carregar e transformar):
+    - Mecanismo de processamento de dados pode usar uma abordagem iterativa, recuperar e processar os dados do armazenamento, antes de gravar os dados e os modelos transformados de volta no armazenamento;
+    - É mais adequado para construir modelos complexos que dependem de vários itens do banco de dados, geralmente usando processamento em lotes periódicos;
+
+    O ELT é uma abordagem escalonável adequada para a nuvem, pois ela pode usar a ampla capacidade de processamento disponível. A abordagem mais orientada a fluxo do ETL coloca mais ênfase na taxa de transferência. No entanto, o ETL pode filtrar os dados antes de armazená-los. Dessa forma, o ETL pode ajudar na privacidade e na conformidade dos dados, removendo dados confidenciais antes que eles cheguem aos seus modelos de dados analíticos.
+
+|| Relatório
+
+    O relatório é o processo de organizar dados em resumos informativos para monitorar o desempenho de diferentes áreas de uma organização. Um bom relatório deve gerar perguntas dos usuários finais sobre os negócios.
+    Os relatórios mostram o que aconteceu, enquanto a análise se concentra em explicar por que isso aconteceu e o que você pode fazer a respeito.
+
+|| Business Intelligence
+
+    O termo BI (Business Intelligence) refere-se a tecnologias, aplicativos e práticas para a coleta, a integração, a análise e a apresentação de informações corporativas. A finalidade do business intelligence é dar suporte a uma melhor tomada de decisões.
+    Os sistemas de business intelligence fornecem exibições históricas, atuais e preditivas das operações empresariais, geralmente usando dados que foram coletados em um data warehouse e, ocasionalmente, usando dados operacionais dinâmicos.
+
+|| Análise de dados
+
+    O termo análise de dados é genérico e abrange uma variedade de atividades, cada uma com o próprio foco e as próprias metas. Você pode categorizar essas atividades como análise descritiva, diagnóstica, preditiva, prescritiva e cognitiva.
+
+|| Análise descritiva (o que aconteceu)
+
+    A análise descritiva ajuda a responder perguntas sobre o que aconteceu, com base em dados históricos. As técnicas de análise descritivas resumem grandes conjuntos de dados para descrever os resultados para os stakeholders.
+
+|| Análise de diagnóstico (por que as coisas aconteceram)
+
+    A análise de diagnóstico ajuda a responder perguntas sobre por que as coisas aconteceram. As técnicas de análise de diagnóstico complementam a análise descritiva mais básica. Elas consideram as conclusões da análises descritiva e se aprofundam para encontrar a causa. Os indicadores de desempenho são investigados mais detalhadamente para descobrir por que eles ficaram melhores ou piores.
+
+|| Análise preditiva (o que acontecerá no futuro)
+
+    As técnicas de análise preditiva usam dados históricos para identificar tendências e determinar se é provável que elas se repitam. As ferramentas analíticas preditivas fornecem insights valiosos sobre o que pode acontecer no futuro. As técnicas incluem uma variedade de técnicas de machine learning e estatísticas, como redes neurais, árvores de decisão e regressão.
+
+|| Análise prescritiva (ações para atingir uma meta)
+
+    Ao usar insights da análise preditiva, é possível tomar decisões orientadas por dados. Essa técnica permite que as empresas tomem decisões informadas em meio às incertezas. As técnicas de análise prescritiva contam com as estratégias de machine learning para encontrar padrões em grandes conjuntos de dados. Analisando as decisões e os eventos anteriores, a probabilidade de desfechos diferentes pode ser estimada.
+
+|| Análise cognitiva (extrair inferências de padrões e dados existentes)
+
+    A análise cognitiva ajuda a aprender o que poderá acontecer se as circunstâncias forem alteradas e como você poderá lidar com essas situações.
+    As inferências não são consultas estruturadas com base em um banco de dados de regras. Em vez disso, elas são hipóteses não estruturadas obtidas de diversas fontes e expressas com diferentes graus de confiança. A análise cognitiva eficaz depende de algoritmos de machine learning. Ele usa vários conceitos de NLP (processamento de linguagem natural) para compreender fontes de dados não utilizadas anteriormente, como logs de conversa de call center e análises de produtos.

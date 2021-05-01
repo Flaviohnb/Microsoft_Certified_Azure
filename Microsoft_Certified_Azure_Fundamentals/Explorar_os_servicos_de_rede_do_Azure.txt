@@ -1,0 +1,14 @@
+Explorar os serviços de rede do Azure
+
+| Conceitos básicos da Rede Virtual do Azure
+
+    - Redes virtuais do Azure permitem que recursos do Azure, como VMs, aplicativos Web e bancos de dados, comuniquem-se uns com os outros, com usuários na Internet e com computadores cliente locais. 
+    - As redes virtuais do Azure oferecem as seguintes funcionalidades de rede essenciais:
+        . Isolamento e segmentação
+        . Comunicação pela Internet
+        . Comunicação entre recursos do Azure
+        . Comunicação com os recursos locais
+        . Rotear tráfego de rede
+        . Filtrar tráfego de rede
+        . Conectar redes virtuais
+

@@ -1,0 +1,21 @@
+Conceitos básicos do Gateway de VPN do Azure
+
+| Uma VPN (rede virtual privada) é um tipo de rede interconectada privada. VPNs usam um túnel criptografado dentro de outra rede. O tráfego é criptografado ao viajar pela rede não confiável para evitar interceptação ou outros ataques.
+
+| Gateways VPN
+
+    - Permitem as seguintes conectividades:
+        . Datacenters locais a redes virtuais por meio de uma conexão site a site.
+        . Dispositivos individuais a redes virtuais por meio de uma conexão ponto a site.
+        . Redes Virtuais a outras redes virtuais por meio de uma conexão rede a rede.
+
+    - Ao implantar um gateway de VPN, você especifica o tipo de VPN: baseada em política ou baseada em rota. A principal diferença entre esses dois tipos de VPN é como o tráfego a ser criptografado é especificado. 
+
+| VPNs baseadas em política
+
+    - Especificam estaticamente o endereço IP dos pacotes que devem ser criptografados por meio de cada túnel. 
+
+| VPNs baseadas em rota
+
+    - Os túneis IPSec são modelados como uma interface de rede ou uma interface de túnel virtual. O roteamento de IP (protocolos de roteamento dinâmico ou rotas estáticas) decide qual dessas interfaces de túnel usar ao enviar cada pacote.
+

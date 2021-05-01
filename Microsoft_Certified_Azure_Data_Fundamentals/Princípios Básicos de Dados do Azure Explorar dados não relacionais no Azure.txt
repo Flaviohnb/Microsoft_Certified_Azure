@@ -1,0 +1,54 @@
+| Princípios Básicos de Dados do Azure: explorar dados não relacionais no Azure
+
+|| Armazenamento de Tabelas do Azure
+
+    Armazenamento de Tabelas do Azure é um repositório de chave-valor escalonável mantido na nuvem. Nesse modelo, os dados de um item são armazenados como um conjunto de campos e o item é identificado por uma chave exclusiva.
+    
+    - Itens são denominados linhas;
+    - Campos são conhecidos como colunas;
+
+    O particionamento é um mecanismo para agrupar linhas relacionadas, com base em uma propriedade comum ou chave de partição. As linhas que compartilham a mesma chave de partição serão armazenadas em conjunto. O particionamento não só ajuda a organizar dados, mas também pode aprimorar a escalabilidade e o desempenho:
+
+    - As partições são independentes umas das outras e podem aumentar ou diminuir à medida que as linhas são adicionadas a uma partição ou removidas delas. Uma tabela pode conter qualquer número de partições;
+    - Ao pesquisar dados, você pode incluir a chave de partição nos critérios de pesquisa. Isso ajuda a restringir o volume de dados a ser examinado e aprimora o desempenho, reduzindo a quantidade de E/S (leituras e gravações) necessárias para localizar os dados;
+
+|| Armazenamento de Blobs do Azure
+
+    Armazenamento de Blobs do Azure é um serviço que permite armazenar grandes quantidades de dados não estruturados (ou blobs) na nuvem.
+
+    Tipos de blob:
+
+    - Blob de blocos é tratado como um conjunto de blocos. Cada bloco pode variar em tamanho, até 100 MB. Um blob de blocos pode conter até 50 mil blocos, fornecendo um tamanho máximo de mais de 4,7 TB. O bloco é a menor quantidade de dados que podem ser lidos ou gravados como uma unidade individual.
+        . Usados para armazenar objetos binários, grandes e discretos que são alterados com pouca frequência;
+    - Blob de páginas é organizado como uma coleção de páginas de tamanho fixo de 512 bytes. Um blob de páginas pode conter até 8 TB de dados. O Azure usa blobs de páginas para implementar o armazenamento em disco virtual para máquinas virtuais.
+        . Otimizado para dar suporte a operações de leitura e gravação aleatórias. Você pode buscar e armazenar dados para uma página, se necessário.
+    - Blob de acréscimo é um blob de blocos otimizado para dar suporte a operações de acréscimo. Você só pode adicionar blocos ao final de um blob de acréscimo; não há suporte à atualização ou à exclusão de blocos existentes. Cada bloco pode variar em tamanho, até 4 MB. O tamanho máximo de um blob de acréscimo é de mais de 195 GB.
+
+    Camadas de acesso:
+
+    - Quente. Camada utilizada para "blobs" acessados com frequencia; Alto desempenho;
+    - Fria. Camada utilizada para "blobs" acessados com pouca frequencia; Desempenho inferior a Quente;
+    - Arquivos. Camada utilizada para "blobs" acessados raramente; Maior latência, menor custo de armazenamento;
+
+|| Armazenamento de Arquivos do Azure
+
+    Armazenamento de Arquivos do Azure permite que você crie compartilhamentos de arquivo na nuvem e acesse esses compartilhamentos de arquivo de qualquer lugar com uma conexão com a Internet.
+
+|| Azure Cosmos DB
+
+    É um sistema de gerenciamento de banco de dados NoSQL de vários modelos. O Cosmos DB gerencia os dados como um conjunto particionado de documentos.
+    
+    - Documento: É uma coleção de campos, identificados por uma chave;
+    - Campos: Pode conter documentos filho;
+
+    Um documento pode conter até 2 MB de dados, incluindo pequenos objetos binários. Se você precisar armazenar blobs maiores como parte de um documento, use o Armazenamento de Blobs do Azure e adicione uma referência ao blob no documento.
+
+    Os documentos em um banco de dados Cosmos DB são organizados em contêineres. 
+    Os documentos em um contêiner são agrupados em partições. 
+    Uma partição contém um conjunto de documentos que compartilham uma chave de partição
+
+|| Provisionamento 
+
+    É o ato de executar uma série de tarefas que um provedor de serviços, como o Azure Cosmos DB, realiza para criar e configurar um serviço.
+
+    O Azure fornece várias ferramentas que podem ser usadas para provisionar serviços: O portal do Azure; A CLI (interface de linha de comando) do Azure; Azure PowerShell; Modelos do Azure Resource Manager.
